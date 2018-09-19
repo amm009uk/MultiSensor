@@ -21,7 +21,9 @@ Each sensor sends its own MQTT message.
 
 -------------------------------------------------------------------------------------------------------------
 ## Pin Connections 
-Project was developed on a Wemos D1 mini pro. Sensors were hooked up as follows:
+Project was developed on a Wemos D1 mini pro board. I like the boards form-factor and its of use. 
+
+Sensors were hooked up as follows:
 - D4 Pin for Temperature sensor
 - D2 Pin for motion sensor
 - D1 Pin for door/window sensor 1
@@ -41,11 +43,11 @@ All future updates can now be performed over the air no need for USB assuming ab
 
 -------------------------------------------------------------------------------------------------------------
 ## Usage
-1. Device will initially come up with its own *Access Point* called ITEAD-xxxxxxx. Connect to this and configure WiFi parameters. Once saved, device will reboot.
+1. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters. Once saved, device will reboot.
 
 2. On bootup, device will connect to your WiFi. Find its IP address through your router and connect to it. Configure all parameters and once saved, device will reboot.
 
-3. All sensors will send data as appropriate.
+3. All sensors will send their own data over MQTT messages as appropriate.
 
 - An alternative method for finding your device is to scan your mDNS network
 
