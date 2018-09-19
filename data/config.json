@@ -1,0 +1,17 @@
+{
+  "deviceID":      "New-ESP",
+  "rebootAt":      12,
+  "tempPolling":   900,
+  "MQTT": {
+    "Server":      "192.168.100.10",
+    "Port":        1883,
+    "User":        "user",
+    "Password":    "password",
+    "tempTopic":   "SH/sensor/TempLiving",
+    "motionTopic": "SH/sensor/MotionLiving",
+    "reed1Topic":  "SH/sensor/Reed1Living",
+    "reed2Topic":  "SH/sensor/Reed2Living",
+    "reed3Topic":  "SH/sensor/Reed3Living",
+    "reed4Topic":  "SH/sensor/Reed4Living"
+  }
+}
