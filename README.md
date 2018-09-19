@@ -15,7 +15,7 @@ This firmware is designed to control up to 6 sensors:
 - One temperature
 - Up to four reed switches (door/window type)
 
-You don't need all the sensors. Each sensor is disabled/enabled through MultiSensor\src\User.h
+You don't need all the sensors. Each sensor may be disabled/enabled through MultiSensor\src\User.h
 
 Each sensor sends its own MQTT message.
 
