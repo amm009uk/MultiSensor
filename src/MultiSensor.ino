@@ -29,8 +29,8 @@ char mqtt_server[40]      = "                                      ";
 int  mqtt_port;
 char mqtt_user[11]        = "          ";
 char mqtt_password[11]    = "          ";
-char mqtt_tempTopic[40]  = "                                      ";
-char mqtt_motionTopic[40]= "                                      ";
+char mqtt_tempTopic[40]   = "                                      ";
+char mqtt_motionTopic[40] = "                                      ";
 char mqtt_reed1Topic[40]  = "                                      ";
 char mqtt_reed2Topic[40]  = "                                      ";
 char mqtt_reed3Topic[40]  = "                                      ";
@@ -170,7 +170,7 @@ void setup() {
   httpServer.onNotFound(handleNotFound);
 
   httpServer.begin();                                                // Start Web Server
-  
+
   delay(10);
 
   mDNS.addService("ESP8266", "tcp", 80);                             // Add service availability
@@ -190,7 +190,7 @@ void setup() {
   //pinMode(BUILTIN_LED, OUTPUT);
 
   delay(10);
-  
+
 #ifdef TEMP_SENSOR
   dht.begin();                                                       // Start the DHT sensor
 #endif
@@ -310,11 +310,11 @@ void loop() {
 //  debug("rebootAt: "); debug((String)rebootAt); debug("............. Min: "); debug(systemUpTimeMn); debug(" Hr: "); debugln(systemUpTimeHr);
 #endif
   	if (systemUpTimeHr.toInt() == rebootAt) {
-    	MQTTclient.publish("SH/Rebooted", deviceID);
+    	MQTTclient.publish("Rebooted", deviceID);
     	reboot();
 	  }
 	}
-	
+
 } // loop()
 
 void debug(String message) {

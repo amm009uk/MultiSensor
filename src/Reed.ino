@@ -19,7 +19,7 @@ void checkReedState(unsigned int PIN, char* topic, String& last_reed_state, Stri
   if (last_reed_state != reed_state) {
     MQTTclient.publish(topic, &reed_state[0]);
 #ifdef SERIAL_DEBUG
-    debug("..Reed state change: "); debug(reed_state);      debugln();
+    debug("..Reed state change: "); debug(reed_state); debug(" --> "); debugln(topic);
 #endif
   }
 
