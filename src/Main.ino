@@ -176,6 +176,7 @@ void setup() {
   mDNS.addService("ESP8266", "tcp", 80);                             // Add service availability
 
   MQTTclient.setServer(mqtt_server, mqtt_port);                      // Initialse MQTT client
+  MQTTclient.setCallback(callback);                                  // Callback service for receiving MQTT messages
   lastReconnectAttempt = 0;
 
   delay(10);

@@ -9,10 +9,10 @@ void checkMotionState(unsigned int PIN, char* topic, String& last_motion_state, 
 
   if (digitalRead(PIN) == HIGH) {
     motion_state = (char*) "OPEN";
-//    digitalWrite(BUILTIN_LED, LOW);                                  // LED on
+//		digitalWrite(BUILTIN_LED, LOW);                                  // LED on
   } else {
       motion_state = (char*) "CLOSED";
-//      digitalWrite(BUILTIN_LED, HIGH);                               // LED off
+//			digitalWrite(BUILTIN_LED, HIGH);                               // LED off
   }
 
   // If the state has changed only then publish the change

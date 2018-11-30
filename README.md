@@ -17,7 +17,13 @@ This firmware is designed to control up to 6 sensors:
 
 You don't need all the sensors. Each sensor may be disabled/enabled through MultiSensor\src\User.h
 
-Each sensor sends its own MQTT message.
+Each sensor sends its own MQTT message. 
+
+Finding IP Address:
+    To get a devices IP address you can try the mDNS method of using <unique ID.local> in your browser but this 
+	doesn't always work. Alternatively you can send a blank MQTT message as defined in user.h at "IP_REQUEST". 
+	The device will respond with another MQTT message such as IP/Reply/<unique ID> with the IP address in the 
+	payload.
 
 -------------------------------------------------------------------------------------------------------------
 ## Pin Connections 

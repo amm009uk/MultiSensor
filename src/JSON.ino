@@ -9,7 +9,7 @@ char* loadConfig() {                                                 // Load JSO
     return (char*)"Failed to open config file";
   }
 
-  const size_t bufferSize = JSON_OBJECT_SIZE(4) + JSON_OBJECT_SIZE(01) + 400;
+  const size_t bufferSize = JSON_OBJECT_SIZE(4) + JSON_OBJECT_SIZE(10) + 420;
   DynamicJsonBuffer jsonBuffer(bufferSize);
 
   std::unique_ptr<char[]> buf(new char[bufferSize]);                 // Allocate a buffer to store contents of the file
