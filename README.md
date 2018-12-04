@@ -20,7 +20,7 @@ Firmware is designed to control up to 6 sensors:
 
 You don't need all the sensors. Each sensor may be enabled/disabled through MultiSensor\src\User.h
 
-Each sensor sends its own MQTT message status - so you need a Mosquitto Broker running
+Each sensor sends its own MQTT message status - so you must have a Mosquitto Broker running
 
 -------------------------------------------------------------------------------------------------------------
 ## Setup device
