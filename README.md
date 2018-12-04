@@ -81,6 +81,6 @@ These can be reconfiured within MultiSensor\src\User.h.
 Once device is connected to your WiFi, find its IP and connect to it. User/Password are stored in Multiensor/src/User.h so you can always modify and flash new firmware to change it.
 
 -------------------------------------------------------------------------------------------------------------
-- I am simply reusing other peoples amazing work for instance the following libraries PubSubClient and WifiManager.
+- I am simply reusing other peoples amazing work for instance the following libraries PubSubClient, WifiManager, RemoteDebug etc.
 
 - My development environment is Atom with its builtin PlatformIO toolset. Its a fantastic build and debug environment.
