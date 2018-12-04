@@ -40,8 +40,9 @@ Each sensor sends its own MQTT message status - so you must have a Mosquitto Bro
 
 7. Test all sensors and once ok, turn off debugging and upload new compiled firmware - see section **Debug - Serial/Telnet output**.
 
-Above steps above should be done over USB-->Serial interface until device is fully functioning.  
-Future firmware updates can be performed over the air no need for USB-->Serial interface.
+- Above steps above should be done over USB-->Serial interface until device is fully functioning.
+
+- Future firmware updates can be performed over the air no need for USB-->Serial interface.
 
 -------------------------------------------------------------------------------------------------------------
 ## Finding device IP Address
