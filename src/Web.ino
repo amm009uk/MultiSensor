@@ -1,7 +1,7 @@
 void handleNotFound() {
 
 #ifdef SERIAL_DEBUG
-  debugln("Running handleNotFound()");
+  rdebugAln("Running handleNotFound()");
 #endif
   httpServer.send(404, "text/plain", "404: Not found");
 
@@ -10,13 +10,15 @@ void handleNotFound() {
 void handleRoot() {
 
 #ifdef SERIAL_DEBUG
-  debugln("Running handleRoot()");
+  rdebugAln("Running handleRoot()");
 #endif
+
   if(!httpServer.authenticate(WWW_USER, WWW_PASSWD)) {               // Check user + password
     return httpServer.requestAuthentication();                       // Request user + password
   }
+
 #ifdef SERIAL_DEBUG
-  debugln("..HTTP status 200: Good URL and successfully authenticated");
+  rdebugAln("HTTP status 200: Good URL and successfully authenticated");
 #endif
 
   sendHTMLPage();
@@ -27,7 +29,7 @@ void handleRoot() {
 void sendHTMLPage() {
 
 #ifdef SERIAL_DEBUG
-  debugln("Running sendHTMLPage()");
+  rdebugAln("Running sendHTMLPage()");
 #endif
 
   INDEX_HTML  = "<!DOCTYPE html>\n";
@@ -202,7 +204,7 @@ void sendHTMLPage() {
   delay(100);
 
 #ifdef SERIAL_DEBUG
-  debugln("..Web Page updated");
+  rdebugAln("Web Page updated");
 #endif
 
 } // sendHTMLPage()
@@ -210,17 +212,16 @@ void sendHTMLPage() {
 void saveChanges() {
 
 #ifdef SERIAL_DEBUG
-  debugln("Running saveChanges()");
+  rdebugAln("Saving changes...");
 #endif
 
   if (httpServer.args() !=  13) {
 #ifdef SERIAL_DEBUG
-    debugln("Wrong number args received from HTTP POST");
+    rdebugAln("Wrong number args received from HTTP POST: %d", httpServer.args());
 #endif
   	return;
   }
-  debug("..No. of arguments from web page save: "); debugln((String)httpServer.args());
-   
+
 //  for ( uint8_t i = 0; i < httpServer.args(); i++ ) {
 //    debugln(httpServer.arg(i));
 //  }

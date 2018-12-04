@@ -9,6 +9,7 @@
 #include <ArduinoJson.h>                                             // Read, write JSON format
 #include <DHT.h>                                                     // DHT sensor library by Adafruit
 #include <Functions.h>                                               // Our functions
+#include <RemoteDebug.h>                                             // Remote debug over telnet   
 #include <User.h>                                                    // Custom settings
 
 /*----------------------------------------- Global variables -----------------------------------------*/
@@ -18,11 +19,11 @@ const String version = "1.4";                                        // Master v
 WiFiClient WiFiClient;                                               // The WiFi client object
 PubSubClient MQTTclient(WiFiClient);                                 // MQTT client object
 MDNSResponder mDNS;                                                  // Multi-Cast DNS object
+RemoteDebug Debug;                                                   // Debug messages over WiFi using Telnet
 
 char chipID[25]           = "                        ";              // Unique'ish chip ID found thru API
 char deviceID[30]         = "                             ";         // User specified name stored in configuration file
 int rebootAt;                                                        // How many mins to wait before auto-reboot
-String freeHeap;
 
 /* MQTT Settings */
 char mqtt_server[40]      = "                                      ";
@@ -94,29 +95,33 @@ long now;                                                            // Hold cur
 
 void setup() {
 
-  #ifdef SERIAL_DEBUG
-    Serial.begin(115200);
-    delay(100);
-  #endif
+#ifdef SERIAL_DEBUG
+  Serial.begin(115200);
+  delay(100);
+#endif
 
-  #ifdef SERIAL_DEBUG
-  debugln("\n\n************ Setup() started **************");
-  #endif
+  //
+  // RemoteDebug library setup
+  //
+  Debug.setSerialEnabled(true);                                      // Output over serial as well
+  Debug.setResetCmdEnabled(true);                                    // Enable the reset command
 
-  // Get chip's Unique ID to be used in various places
+  // Get chip's Unique ID (used for WiFi Access Point name)
   uint32_t chipid = ESP.getChipId();
   snprintf(chipID, 25, "ESP-%08X", chipid);
 #ifdef SERIAL_DEBUG
-  debug("..Chip ID: "); debugln(chipID);
+  rdebugAln("******************** Setup() Begin ********************");
+  rdebugAln("Chip ID: %s", chipID);
 #endif
+
   if (SPIFFS.begin()) {                                              // Start filesystem
 #ifdef SERIAL_DEBUG
-    debugln("..File system mounted successfully");
+    rdebugAln("File system mounted successfully");
 #endif
     spiffsActive = true;
   } else {
 #ifdef SERIAL_DEBUG
-    debugln("..File system failed to mount");
+    rdebugAln("File system failed to mount");
 #endif
     return;
   }
@@ -126,15 +131,15 @@ void setup() {
   result = loadConfig();                                             // Load configuration file
   if (strcmp(result, "OK") != 0) {
 #ifdef SERIAL_DEBUG
-  	debug("..");debugln(result);
+  	rdebugAln("..result of loadConfig() %s", result);
 #endif
   	return;
   }
 
-  WiFi.hostname(deviceID);
-
+  WiFi.hostname(deviceID);                                           // Set hostname in DNS
+	
 #ifdef SERIAL_DEBUG
-  debugln("..WiFiManager starting...");
+  rdebugAln("WiFiManager starting...");
 #endif
   WiFiManager wifiManager;                                           // Initialise WiFiManager and it will do all the work of managing the WiFi
 //  wifiManager.resetSettings();                                     // Wipes out previously saved WiFi settings
@@ -143,7 +148,7 @@ void setup() {
 //  if(!wifiManager.autoConnect(chipID, WWW_PASSWD)) {                 // Fetch SSID and Password from EEPROM and try to connect
   if(!wifiManager.autoConnect(chipID)) {                             // Fetch SSID and Password from EEPROM and try to connect
 #ifdef SERIAL_DEBUG
-    debugln("....Timed out connecting to Access Point");             // If it doesn't connect start an access point and go into
+    rdebugAln("Timed out connecting to Access Point");             // If it doesn't connect start an access point and go into
 #endif
     delay(5000);                                                     // a blocking loop waiting for configuration or timeout
     ESP.restart();                                                   // Restart and try again
@@ -151,10 +156,15 @@ void setup() {
 
   if (!mDNS.begin(deviceID, WiFi.localIP())) {                       // Start the mDNS responder for <deviceID>.local
 #ifdef SERIAL_DEBUG
-    debugln("..Error setting up MDNS responder!");
+    rdebugAln("..Error setting up MDNS responder!");
 #endif
     return;
   }
+
+  mDNS.addService("ESP8266", "tcp", 80);                             // Advertise HTTP config page
+  mDNS.addService("telnet", "tcp", 23);                              // Advertise Telnet
+  
+  Debug.begin(deviceID);                                             // Start the Remote Debug
 
   delay(10);
 
@@ -173,8 +183,6 @@ void setup() {
 
   delay(10);
 
-  mDNS.addService("ESP8266", "tcp", 80);                             // Add service availability
-
   MQTTclient.setServer(mqtt_server, mqtt_port);                      // Initialse MQTT client
   MQTTclient.setCallback(callback);                                  // Callback service for receiving MQTT messages
   lastReconnectAttempt = 0;
@@ -188,8 +196,10 @@ void setup() {
   pinMode(REED_PIN2, INPUT);
   pinMode(REED_PIN3, INPUT);
   pinMode(REED_PIN4, INPUT);
-  //pinMode(BUILTIN_LED, OUTPUT);
+  pinMode(BUILTIN_LED, OUTPUT);
 
+	digitalWrite(BUILTIN_LED, HIGH);
+  
   delay(10);
 
 #ifdef TEMP_SENSOR
@@ -197,7 +207,7 @@ void setup() {
 #endif
 
 #ifdef SERIAL_DEBUG
-  debugln("************ Setup() finished *************\n\n");
+  rdebugAln("******************** Setup() Finish ********************");
 #endif
 
 } // setup()
@@ -205,13 +215,13 @@ void setup() {
 void WiFiStatus() {
 
 #ifdef SERIAL_DEBUG
-  debugln("Running WiFiStatus()");
-  debug("..Connected to WiFi: "); debugln(WiFi.SSID());
-  debug("....mDNS started: "); debug(deviceID); debugln(".local");
-  debug("....IP address:   "); debugln(WiFi.localIP().toString());
-  debug("....MAC address:  "); debugln(WiFi.macAddress());
-  debug("....Signal (dBm): "); debugln((String)WiFi.RSSI());
+  rdebugAln("WiFi SSID:    %s", WiFi.SSID().c_str());
+  rdebugAln("mDNS started: %s%s", deviceID, ".local");
+	rdebugAln("IP address:   %s", WiFi.localIP().toString().c_str());
+  rdebugAln("MAC address:  %s", WiFi.macAddress().c_str());
+	rdebugAln("Signal (dBm): %d", WiFi.RSSI());
 #endif
+
   delay(10);
 
 } // WiFiStatus()
@@ -224,18 +234,6 @@ void reboot() {
 
 } //reboot()
 
-void getFreeHeap() {
-
-  long  fh = ESP.getFreeHeap();
-  char  fhc[20];
-
-  ltoa(fh, fhc, 10);
-  freeHeap = String(fhc);
-#ifdef SERIAL_DEBUG
-  debug("Free Heap: "); debugln(freeHeap);
-#endif
-
-} // getFreeHeap()
 
 void loop() {
 
@@ -290,7 +288,7 @@ void loop() {
 #ifdef REED_SENSOR4
     checkReedState(REED_PIN4, mqtt_reed4Topic, last_reed_state4, reed_state4);
 #endif
-
+	
   }
 
 	//
@@ -308,7 +306,7 @@ void loop() {
 //  systemUpTimeDy = int((millisecs / (1000 * 60 * 60 * 24)) % 365);
 
 #ifdef SERIAL_DEBUG
-//  debug("rebootAt: "); debug((String)rebootAt); debug("............. Min: "); debug(systemUpTimeMn); debug(" Hr: "); debugln(systemUpTimeHr);
+//    rdebugAln("Reboot after %d ... Counter = Min: %s Hr: %s", rebootAt, systemUpTimeMn.c_str(), systemUpTimeHr.c_str());
 #endif
   	if (systemUpTimeHr.toInt() == rebootAt) {
     	MQTTclient.publish("Rebooted", deviceID);
@@ -316,30 +314,11 @@ void loop() {
 	  }
 	}
 
+#ifdef SERIAL_DEBUG
+	Debug.handle();                                                    // Telnet debug window
+#endif
+
+//	delay(10);
+	yield();
+
 } // loop()
-
-void debug(String message) {
-
-//#ifdef SERIAL_DEBUG
-    Serial.print(message);
-    delay(SERIAL_DELAY);
-//#endif
-
-}
-
-void debugln(String message) {
-
-//#ifdef SERIAL_DEBUG
-    Serial.println(message);
-    delay(SERIAL_DELAY);
-//#endif
-
-}
-
-void debugln() {
-
-//  #ifdef SERIAL_DEBUG
-    Serial.println();
-//  #endif
-
-}

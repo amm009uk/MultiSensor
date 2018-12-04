@@ -2,7 +2,7 @@
 void getDHTdata() {
 
 #ifdef SERIAL_DEBUG
-//  debugln("Running getDHTdata()");
+//  rdebugAln("Running getDHTdata()");
 #endif
 
   now = millis();
@@ -16,7 +16,7 @@ void getDHTdata() {
 
   if (isnan(temp_c) || isnan(humidity)) {                            // Check if any DHT read failed and exit early to try again
 #ifdef SERIAL_DEBUG
-    debugln("..Failed to read data from DHT sensor!");
+    rdebugAln("Failed to read data from DHT sensor!");
 #endif
     return;
   }
@@ -28,9 +28,11 @@ void getDHTdata() {
 //  if (!isnan(hic)) {
     MQTTclient.publish(mqtt_tempTopic, String(hic).c_str());
 #ifdef SERIAL_DEBUG
-    debug("..Humidity: "); debug(String(humidity).c_str());
-    debug(" %\tTemperature: "); debug(String(temp_c).c_str()); debug(" *C ");
-    debug(" \tHeat index: "); debug(String(hic).c_str()); debugln(" *C ");
+//    rdebugAln("..Humidity: "); debug(String(humidity).c_str());
+//    rdebugAln(" %\tTemperature: "); debug(String(temp_c).c_str()); debug(" *C ");
+//    rdebugAln(" \tHeat index: "); debug(String(hic).c_str()); debugln(" *C ");
+
+    rdebugAln("Humidity: %f \tTemperature: %f \tHeat index: %f", humidity, temp_c, hic);
 #endif
 //  }
   

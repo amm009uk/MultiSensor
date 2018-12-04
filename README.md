@@ -2,64 +2,82 @@ ESP8266 All-in-One for controlling several sensors :: Motion (1), Reed (4) and D
 
 # MultiSensor
 
-### This project assumes you know what an esp8266 device is and how to upload code to it.
+### This project assumes you know what an esp8266 device is and how to upload code to it
 
 -------------------------------------------------------------------------------------------------------------
 ## Version
 1.0 Initial testing completed
+1.2 Updated README
+1.4 Fixed PIN mappings
+1.5 Added over the air debug (RemoteDebug library) 
 
 -------------------------------------------------------------------------------------------------------------
 ## Features
-This firmware is designed to control up to 6 sensors:
-- One motion
-- One temperature
-- Up to four reed switches (door/window type)
+Firmware is designed to control up to 6 sensors:
+	- One motion
+	- One temperature
+	- Up to four reed switches (door/window type)
 
-You don't need all the sensors. Each sensor may be disabled/enabled through MultiSensor\src\User.h
+You don't need all the sensors. Each sensor may be enabled/disabled through MultiSensor\src\User.h
 
-Each sensor sends its own MQTT message. 
+Each sensor sends its own MQTT message status - so you need a Mosquitto Broker running
 
-Finding IP Address:
-    To get a devices IP address you can try the mDNS method of using <unique ID.local> in your browser but this 
-	doesn't always work. Alternatively you can send a blank MQTT message as defined in user.h at "IP_REQUEST". 
-	The device will respond with another MQTT message such as IP/Reply/<unique ID> with the IP address in the 
-	payload.
+-------------------------------------------------------------------------------------------------------------
+## Setup device
+1. Flash SPIFFs to upload a configuration file - MultiSensor/data/config.json. You may modify the contents prior to upload but not necessary.
 
+2. Flash firmware.
+
+3. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters. 
+   Once saved, device will reboot and connect to your WiFi.
+   See section Finding device IP Addres
+
+4. Once device is connected to WiFi, connect to it using browser. 
+
+5. Configure device parameters on web page and save.
+   Once saved, device will reboot and connect to your WiFi.
+
+6. All sensors will send their own MQTT message as appropriate.
+
+7. Test all sensors and once all is ok, turn off debugging and upload new compiled firmware - see section Debug/Serial/Telnet.
+
+Above steps above should be done over USB-->Serial interface until device is fully functioning.
+Future firmware updates can be performed over the air no need for USB-->Serial interface.
+
+-------------------------------------------------------------------------------------------------------------
+## Finding device IP Address
+    To initially get the device IP address you have the following options:
+		- Look at the Serial output where it will show up (assuming you have debug output turned on)
+		- Look in your router
+		- Try an mDNS browser app but this often takes time to get the ESP showing up
+	  - If already connected to WiFi and connected to MQTT Broker, you can send a blank MQTT message as defined in user.h at "IP_REQUEST".
+	    The device will respond with another MQTT message such as IP/Reply/<unique ID> with the IP address in the payload.
+
+-------------------------------------------------------------------------------------------------------------
+## Debug/Serial/Telnet 
+	You have two options after turning on SERIAL_DEBUG within MultiSensor\src\User.h:
+		- Serial USB if connected
+		- Telnet if connected
+	
+	***** Do not leave SERIAL_DEBUG enabled for normal use *****
+	
 -------------------------------------------------------------------------------------------------------------
 ## Pin Connections 
 Project was developed on a Wemos D1 mini pro board. I like the boards form-factor and its of use. 
 
-Sensors were hooked up as follows:
-- D4 Pin for Temperature sensor
+Sensors can be hooked up as follows:
+- D1 Pin for Temperature sensor
 - D2 Pin for motion sensor
-- D1 Pin for door/window sensor 1
-- D5 Pin for door/window sensor 2
-- D6 Pin for door/window sensor 3
-- D7 Pin for door/window sensor 4
+- D5 Pin for door/window sensor 1
+- D6 Pin for door/window sensor 2
+- D7 Pin for door/window sensor 3
+- D8 Pin for door/window sensor 4
+
+These can be reconfiured within MultiSensor\src\User.h.
 
 -------------------------------------------------------------------------------------------------------------
-## Setup device
-1. Flash SPIFFs to upload MultiSensor/data/*.json. You may modify contents but not necessary.
-
-2. To enable/disable serial debug output, uncomment/comment first line in sonoff/src/User.h.
-
-3. Flash firmware.
-
-All future updates can now be performed over the air no need for USB assuming above was successful.
-
--------------------------------------------------------------------------------------------------------------
-## Usage
-1. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters. Once saved, device will reboot.
-
-2. On bootup, device will connect to your WiFi. Find its IP address through your router and connect to it. Configure all parameters and once saved, device will reboot.
-
-3. All sensors will send their own data over MQTT messages as appropriate.
-
-- An alternative method for finding your device is to scan your mDNS network
-
--------------------------------------------------------------------------------------------------------------
-## OTA Updates
-Once device is connected to your WiFi, find its IP and connect to it. User/Password are stored in sonoff/src/User.h so you can always modify and flash new firmware to change it.
+## OTA Firmware Updates
+Once device is connected to your WiFi, find its IP and connect to it. User/Password are stored in Multiensor/src/User.h so you can always modify and flash new firmware to change it.
 
 -------------------------------------------------------------------------------------------------------------
 - I am simply reusing other peoples amazing work for instance the following libraries PubSubClient and WifiManager.

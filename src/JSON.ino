@@ -1,7 +1,7 @@
 char* loadConfig() {                                                 // Load JSON conig file from SPIFFS
 
 #ifdef SERIAL_DEBUG
-  debugln("Running loadConfig()");
+  rdebugAln("Started loadConfig()");
 #endif
 
   File configFile = SPIFFS.open(CONFIGFILE, "r");
@@ -45,21 +45,22 @@ char* loadConfig() {                                                 // Load JSO
   const char* t_MQTT_reedTopic4  = MQTT["reed4Topic"];  strcpy(mqtt_reed4Topic,  t_MQTT_reedTopic4);
 
 #ifdef SERIAL_DEBUG
-  debugln("..Config file start");
-  debug("....deviceID:         "); debugln(deviceID);
-  debug("....Reboot At:        "); debugln((String)rebootAt);
-  debug("....Temp Polling:     "); debugln((String)tempPolling);
-  debug("....MQTT Server:      "); debugln(mqtt_server);
-  debug("....MQTT Port:        "); debugln((String)mqtt_port);
-  debug("....MQTT User:        "); debugln((String)mqtt_user);
-  debug("....MQTT Password:    "); debugln((String)mqtt_password);
-  debug("....MQTT tempTopic :  "); debugln(mqtt_tempTopic);
-  debug("....MQTT motionTopic: "); debugln(mqtt_motionTopic);
-  debug("....MQTT reed1Topic1: "); debugln(mqtt_reed1Topic);
-  debug("....MQTT reed2Topic2: "); debugln(mqtt_reed2Topic);
-  debug("....MQTT reed3Topic3: "); debugln(mqtt_reed3Topic);
-  debug("....MQTT reed4Topic4: "); debugln(mqtt_reed4Topic);
-  debugln("..Config file end");
+  rdebugAln("Config file begin");
+  
+  rdebugAln("....deviceID:           %s", deviceID);
+  rdebugAln("....Reboot At:          %d", rebootAt);
+	rdebugAln("....Temp Polling:       %d", tempPolling);
+  rdebugAln("....MQTT Server:        %s", mqtt_server);
+  rdebugAln("....MQTT Port:          %d", mqtt_port);
+  rdebugAln("....MQTT User:          %s", mqtt_user);
+  rdebugAln("....MQTT Password:      %s", mqtt_password);
+  rdebugAln("....MQTT tempTopic:     %s", mqtt_tempTopic);
+  rdebugAln("....MQTT motionTopic:   %s", mqtt_motionTopic);
+  rdebugAln("....MQTT reed1Topic1:   %s", mqtt_reed1Topic);
+  rdebugAln("....MQTT reed2Topic2:   %s", mqtt_reed2Topic);
+  rdebugAln("....MQTT reed3Topic3:   %s", mqtt_reed3Topic);
+  rdebugAln("....MQTT reed4Topic4:   %s", mqtt_reed4Topic);
+  rdebugAln("Config file end");
 #endif
 
   delay(10);
@@ -70,7 +71,7 @@ char* loadConfig() {                                                 // Load JSO
 char* saveConfig() {                                                 // Save JSON config file to SPIFFS
 
 #ifdef SERIAL_DEBUG
-  debugln("Running saveConfig()");
+  rdebugAln("Started saveConfig()");
 #endif
 
   File configFile = SPIFFS.open(CONFIGFILE, "w");
@@ -100,11 +101,11 @@ char* saveConfig() {                                                 // Save JSO
 
   root.printTo(configFile);
   delay(10);
-  
+
 #ifdef SERIAL_DEBUG
-  debugln("..Changes saved");
+  rdebugAln("Changes saved");
 #endif
-  
+
   return (char*)"OK";
 
 } // saveConfig()

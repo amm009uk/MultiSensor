@@ -1,9 +1,9 @@
 boolean MQTTconnect() {
 
 #ifdef SERIAL_DEBUG
-  debugln("Running MQTTconnect()");
-  debug("..Attempting MQTT connection to "); debug(mqtt_server); debug("::"); debug((String)mqtt_port); debug("("); debug(mqtt_user); debug("/"); debug(mqtt_password); debugln(")");
+  rdebugAln("Attempting MQTT connection to %s::%d with %s/%s", mqtt_server, mqtt_port, mqtt_user, mqtt_password);
 #endif
+
   if (MQTTclient.connect(deviceID, mqtt_user, mqtt_password)) {
 
 /*
@@ -32,16 +32,16 @@ boolean MQTTconnect() {
 #endif
 */
 		MQTTclient.subscribe(IP_REQUEST);
+		
 #ifdef SERIAL_DEBUG
-    debugln("..MQTT connected");
+    rdebugAln("MQTT connected");
 #endif
 
   } else {
 
 #ifdef SERIAL_DEBUG
-    debugln("..MQTT connection failed");
+    rdebugAln("MQTT connection failed");
 #endif
-
   }
 
   delay(10);
@@ -52,30 +52,31 @@ boolean MQTTconnect() {
 
 void callback(char* topic, byte* payload, unsigned int length) {
 
+//#ifdef SERIAL_DEBUG
+//  debugln("In MQTT Callback()");
+//  debug("..Message arrived ["); debug(topic); debugln("] ");
+//#endif
+
 #ifdef SERIAL_DEBUG
-  debugln("In MQTT Callback()");
-  debug("..Message arrived ["); debug(topic); debugln("] ");
+	rdebugAln("MQTT Callback() initiated");
+  rdebugAln("Message arrived: %s", topic);
 #endif
 	
-  if (strcmp(topic, IP_REQUEST)==0) {                                // Check if we want this message if so get the payload
+  if (strcmp(topic, IP_REQUEST)==0) {                                // Check if we want this message
 
-		//																				
-		// Build the MQTT messsage name																				
-		//																				
-		String t_replyMessage = String(t_replyMessage + IP_REPLY + deviceID);
-		char replyMessage[40]  = "                              ";
-		t_replyMessage.toCharArray(replyMessage, 30);
-														
-		// Build MQTT message contents																				
-		//																				
-		String t_Msg = WiFi.localIP().toString();
-		char Msg[15] = "              ";																				
-		t_Msg.toCharArray(Msg, 15);																				
-																					
-		MQTTclient.publish(replyMessage, Msg);																				
- 
+  	String replyMessage = IP_REPLY;                                  // Build the MQTT reply messsage name
+  	replyMessage.concat(deviceID);                                   // ...
+
+  	String Msg = WiFi.localIP().toString();                          // Build MQTT message payload contents
+
+#ifdef SERIAL_DEBUG
+	rdebugAln("MQTT Publish %s with payload %s", replyMessage.c_str(), Msg.c_str());
+#endif
+
+		MQTTclient.publish(replyMessage.c_str(), Msg.c_str());		       // Publish message to Broker
+
   } else {                                                           // Not interested in this message
-  		debugln("..Message ignored");
+  		rdebugAln("Message ignored");
   	return;
 	}
 

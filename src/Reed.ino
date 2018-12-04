@@ -2,7 +2,7 @@
 void checkReedState(unsigned int PIN, char* topic, String& last_reed_state, String& reed_state) {
 
 #ifdef SERIAL_DEBUG
-//  debugln("Running checkReedState()");
+//  rdebugAln("Running checkReedState()");
 #endif
 
   last_reed_state = reed_state;                                      // Get previous state of door
@@ -19,7 +19,7 @@ void checkReedState(unsigned int PIN, char* topic, String& last_reed_state, Stri
   if (last_reed_state != reed_state) {
     MQTTclient.publish(topic, &reed_state[0]);
 #ifdef SERIAL_DEBUG
-    debug("..Reed state change: "); debug(reed_state); debug(" --> "); debugln(topic);
+    rdebugAln("Reed state change: %s --> %s", reed_state.c_str(), topic);
 #endif
   }
 
