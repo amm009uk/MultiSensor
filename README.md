@@ -51,7 +51,7 @@ Each sensor sends its own MQTT message status - so you must have a Mosquitto Bro
 	2. Look in your router
 	3. Try an mDNS browser app but this often takes time to get the ESP showing up
 
-	4. If already connected to WiFi and connected to MQTT Broker, you can send a blank MQTT message as defined in user.h at "IP_REQUEST".  
+	4. If already connected to WiFi and MQTT Broker, you can send a blank MQTT message as defined in user.h at "IP_REQUEST".  
      The device will respond with another MQTT message such as IP/Reply/<unique ID> with the IP address in the payload.
 
 -------------------------------------------------------------------------------------------------------------
