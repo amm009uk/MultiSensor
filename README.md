@@ -22,6 +22,8 @@ You don't need all the sensors. Each sensor may be enabled/disabled through Mult
 
 Each sensor sends its own MQTT message status - so you must have a Mosquitto Broker running
 
+Temperature is actually "heat index" and is calculated by taking temperature and humidity in account
+
 -------------------------------------------------------------------------------------------------------------
 ## Setup device
 1. Flash SPIFFs to upload the configuration file - MultiSensor/data/config.json. You may modify the contents prior to upload but not necessary.
@@ -67,9 +69,9 @@ Each sensor sends its own MQTT message status - so you must have a Mosquitto Bro
 Project was developed on a Wemos D1 mini pro board. I like the boards form-factor and its of use. 
 
 Sensors can be hooked up as follows:
-- D1 Pin for Temperature sensor
-- D2 Pin for motion sensor
-- D5 Pin for door/window sensor 1
+- D1 Pin for Temperature sensor (DHT22)
+- D2 Pin for Motion sensor (HC-SR501)
+- D5 Pin for door/window sensor 1 (Reed)
 - D6 Pin for door/window sensor 2
 - D7 Pin for door/window sensor 3
 - D8 Pin for door/window sensor 4
