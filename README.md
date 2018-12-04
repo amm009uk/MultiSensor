@@ -38,7 +38,7 @@ Each sensor sends its own MQTT message status - so you must have a Mosquitto Bro
 
 6. All sensors will send their own MQTT message as appropriate.
 
-7. Test all sensors and once ok, turn off debugging and upload new compiled firmware - see section **Debug/Serial/Telnet**.
+7. Test all sensors and once ok, turn off debugging and upload new compiled firmware - see section **Debug - Serial/Telnet output**.
 
 Above steps above should be done over USB-->Serial interface until device is fully functioning.  
 Future firmware updates can be performed over the air no need for USB-->Serial interface.
@@ -53,7 +53,7 @@ Future firmware updates can be performed over the air no need for USB-->Serial i
      The device will respond with another MQTT message such as IP/Reply/<unique ID> with the IP address in the payload.
 
 -------------------------------------------------------------------------------------------------------------
-## Debug/Serial/Telnet output
+## Debug - Serial/Telnet output
 	You have two options after turning on SERIAL_DEBUG within MultiSensor\src\User.h:
 		- Serial USB if connected
 		- Telnet if connected
