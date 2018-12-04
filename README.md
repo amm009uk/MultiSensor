@@ -13,10 +13,10 @@ ESP8266 All-in-One for controlling several sensors :: Motion (1), Reed (4) and D
 
 -------------------------------------------------------------------------------------------------------------
 ## Features
-Firmware is designed to control up to 6 sensors:
-	- One motion
-	- One temperature
-	- Up to four reed switches (door/window type)
+Firmware is designed to control up to 6 sensors:  
+	- One motion  
+	- One temperature  
+	- Up to four reed switches (door/window type)  
 
 You don't need all the sensors. Each sensor may be enabled/disabled through MultiSensor\src\User.h
 
@@ -28,25 +28,25 @@ Each sensor sends its own MQTT message status - so you must have a Mosquitto Bro
 
 2. Flash firmware.
 
-3. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters. 
-   Once saved, device will reboot and connect to your WiFi.
+3. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters.  
+   Once saved, device will reboot and connect to your WiFi.  
    See section Finding device IP Addres
 
 4. Once device is connected to WiFi, connect to it using browser. 
 
-5. Configure device parameters on web page and save.
+5. Configure device parameters on web page and save.  
    Once saved, device will reboot and connect to your WiFi.
 
 6. All sensors will send their own MQTT message as appropriate.
 
 7. Test all sensors and once all is ok, turn off debugging and upload new compiled firmware - see section Debug/Serial/Telnet.
 
-Above steps above should be done over USB-->Serial interface until device is fully functioning.
+Above steps above should be done over USB-->Serial interface until device is fully functioning.  
 Future firmware updates can be performed over the air no need for USB-->Serial interface.
 
 -------------------------------------------------------------------------------------------------------------
 ## Finding device IP Address
-    To initially get the device IP address you have the following options:
+    To initially get the device IP address you have the following options:  
 		- Look at the Serial output where it will show up (assuming you have debug output turned on)
 		- Look in your router
 		- Try an mDNS browser app but this often takes time to get the ESP showing up
