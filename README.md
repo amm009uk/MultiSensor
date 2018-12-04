@@ -6,10 +6,10 @@ ESP8266 All-in-One for controlling several sensors :: Motion (1), Reed (4) and D
 
 -------------------------------------------------------------------------------------------------------------
 ## Version
-1.0 Initial testing completed
-1.2 Updated README
-1.4 Fixed PIN mappings
-1.5 Added over the air debug (RemoteDebug library) 
+1.0 Initial testing completed  
+1.2 Updated README  
+1.4 Fixed PIN mappings  
+1.5 Added over the air debug (RemoteDebug library)  
 
 -------------------------------------------------------------------------------------------------------------
 ## Features
