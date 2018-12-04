@@ -66,7 +66,7 @@ Temperature is actually "heat index" and is calculated by taking temperature and
 
 -------------------------------------------------------------------------------------------------------------
 ## Pin Connections 
-Project was developed on a **Wemos D1 mini pro** board. I like the boards form-factor and its of use. 
+Project was developed on a **Wemos D1 mini pro** board. I like this boards form-factor and its ease of use. 
 
 Sensors can be hooked up as follows:
 - D1 Pin for Temperature sensor (DHT22)
