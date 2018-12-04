@@ -46,11 +46,11 @@ Future firmware updates can be performed over the air no need for USB-->Serial i
 -------------------------------------------------------------------------------------------------------------
 ## Finding device IP Address
     To get the device IP address you have the following options:  
-		- Look at the Serial output where it will show up (assuming you have debug output turned on)
-		- Look in your router
-		- Try an mDNS browser app but this often takes time to get the ESP showing up
-	  - If already connected to WiFi and connected to MQTT Broker, you can send a blank MQTT message as defined in user.h at "IP_REQUEST".
-	    The device will respond with another MQTT message such as IP/Reply/<unique ID> with the IP address in the payload.
+		Look at the Serial output where it will show up (assuming you have debug output turned on)
+		Look in your router
+		Try an mDNS browser app but this often takes time to get the ESP showing up
+	  If already connected to WiFi and connected to MQTT Broker, you can send a blank MQTT message as defined in user.h at "IP_REQUEST".
+	  	The device will respond with another MQTT message such as IP/Reply/<unique ID> with the IP address in the payload.
 
 -------------------------------------------------------------------------------------------------------------
 ## Debug/Serial/Telnet 
