@@ -24,12 +24,11 @@ Each sensor sends its own MQTT message status - so you must have a Mosquitto Bro
 
 -------------------------------------------------------------------------------------------------------------
 ## Setup device
-1. Flash SPIFFs to upload a configuration file - MultiSensor/data/config.json. You may modify the contents prior to upload but not necessary.
+1. Flash SPIFFs to upload the configuration file - MultiSensor/data/config.json. You may modify the contents prior to upload but not necessary.
 
 2. Flash firmware.
 
-3. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters.  
-   Once saved, device will reboot and connect to your WiFi.  
+3. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters. Once saved, device will reboot and connect to your WiFi.  
    See section Finding device IP Addres
 
 4. Once device is connected to WiFi, connect to it using browser. 
