@@ -1,4 +1,4 @@
-ESP8266 All-in-One for controlling several sensors :: Motion (1), Reed (4) and DHT (1)
+ESP8266 All-in-One for controlling several sensors :: (1) Motion, (4) Reeds and (1) DHT
 
 # MultiSensor
 
