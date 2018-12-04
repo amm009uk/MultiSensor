@@ -29,7 +29,7 @@ Each sensor sends its own MQTT message status - so you must have a Mosquitto Bro
 2. Flash firmware.
 
 3. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters. Once saved, device will reboot and connect to your WiFi.  
-   See section Finding device IP Addres
+   See section **Finding device IP Addres**
 
 4. Once device is connected to WiFi, connect to it using browser. 
 
