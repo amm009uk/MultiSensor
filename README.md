@@ -64,7 +64,7 @@ Temperature is actually "heat index" and is calculated by taking temperature and
 		- Serial USB if connected
 		- Telnet if connected
 	
-	***** Do not leave SERIAL_DEBUG enabled for normal use *****
+	** Do not leave SERIAL_DEBUG enabled for normal use **
 
 -------------------------------------------------------------------------------------------------------------
 ## Pin Connections 
