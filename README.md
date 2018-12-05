@@ -88,6 +88,6 @@ Once device is connected to your WiFi, find its IP and connect to it. User/Passw
 - I am simply reusing other peoples amazing work for instance the following libraries:
 	- PubSubClient
 	- WifiManager
-	- [RemoteDebug] (https://github.com/JoaoLopesF/RemoteDebug)
+	- [RemoteDebug](https://github.com/JoaoLopesF/RemoteDebug)
 
 - My development environment is Atom with its builtin PlatformIO toolset. Its a fantastic build and debug environment.
