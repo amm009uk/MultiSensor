@@ -63,8 +63,8 @@ Temperature is actually "heat index" and is calculated by taking temperature and
 	You have two options after turning on SERIAL_DEBUG within MultiSensor\src\User.h:
 		- Serial USB if connected
 		- Telnet if connected
-	
-	**Do not leave SERIAL_DEBUG enabled for normal use**
+
+**Do not leave SERIAL_DEBUG enabled for normal use**
 
 -------------------------------------------------------------------------------------------------------------
 ## Pin Connections 
