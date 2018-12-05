@@ -6,7 +6,7 @@ ESP8266 All-in-One for controlling several sensors :: (1) DHT, (1) Motion and (4
 
 -------------------------------------------------------------------------------------------------------------
 ## Version
-1.0 Initial version
+1.0 Initial version  
 1.1 Testing completed  
 1.2 Updated README  
 1.3 Added IP lookup  
