@@ -14,7 +14,7 @@
 
 /*----------------------------------------- Global variables -----------------------------------------*/
 
-const String version = "1.4";                                        // Master version control
+const String version = "1.5";                                        // Master version control
 
 WiFiClient WiFiClient;                                               // The WiFi client object
 PubSubClient MQTTclient(WiFiClient);                                 // MQTT client object

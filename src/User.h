@@ -2,7 +2,7 @@
          Comment the sensor's that are not required
          ******************************************
 */
-#define SERIAL_DEBUG                                                 // Comment this to disable serial debug output
+//#define SERIAL_DEBUG                                                 // Comment this to disable serial debug output
 
 #define TEMP_SENSOR                                                  // Temperature sensor
 #define MOTION_SENSOR                                                // Motion sensor
