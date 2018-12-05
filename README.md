@@ -6,10 +6,11 @@ ESP8266 All-in-One for controlling several sensors :: (1) DHT, (1) Motion and (4
 
 -------------------------------------------------------------------------------------------------------------
 ## Version
-1.0 Initial testing completed  
+1.0 Initial version
+1.1 Testing completed  
 1.2 Updated README  
 1.3 Added IP lookup  
-1.4 Fixed PIN mappings  
+1.4 Fixed PIN mappings  (motion was hooked up to D4/builtin LED)  
 1.5 Added over the air debug (RemoteDebug library)  
 
 -------------------------------------------------------------------------------------------------------------
