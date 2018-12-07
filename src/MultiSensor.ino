@@ -21,22 +21,21 @@ PubSubClient MQTTclient(WiFiClient);                                 // MQTT cli
 MDNSResponder mDNS;                                                  // Multi-Cast DNS object
 RemoteDebug Debug;                                                   // Debug messages over WiFi using Telnet
 
-char chipID[25]           = "                        ";              // Unique'ish chip ID found thru API
-char deviceID[30]         = "                             ";         // User specified name stored in configuration file
+char deviceID[30];                                                   // User specified name stored in configuration file
 int rebootAt;                                                        // How many mins to wait before auto-reboot
 
 /* MQTT Settings */
-char mqtt_server[40]      = "                                      ";
+char mqtt_server[40];
 int  mqtt_port;
-char mqtt_user[11]        = "          ";
-char mqtt_password[11]    = "          ";
-char mqtt_tempTopic[40]   = "                                      ";
-char mqtt_motionTopic[40] = "                                      ";
-char mqtt_reed1Topic[40]  = "                                      ";
-char mqtt_reed2Topic[40]  = "                                      ";
-char mqtt_reed3Topic[40]  = "                                      ";
-char mqtt_reed4Topic[40]  = "                                      ";
-char mqtt_inTopic[40]     = "                                      ";
+char mqtt_user[11];
+char mqtt_password[11];
+char mqtt_tempTopic[40];
+char mqtt_motionTopic[40];
+char mqtt_reed1Topic[40];
+char mqtt_reed2Topic[40];
+char mqtt_reed3Topic[40];
+char mqtt_reed4Topic[40];
+char mqtt_inTopic[40];
 long lastReconnectAttempt = 0;
 
 /* Web Server */
@@ -103,14 +102,19 @@ void setup() {
   //
   // RemoteDebug library setup
   //
+#ifdef SERIAL_DEBUG
   Debug.setSerialEnabled(true);                                      // Output over serial as well
   Debug.setResetCmdEnabled(true);                                    // Enable the reset command
-
-  // Get chip's Unique ID (used for WiFi Access Point name)
-  uint32_t chipid = ESP.getChipId();
-  snprintf(chipID, 25, "ESP-%08X", chipid);
-#ifdef SERIAL_DEBUG
   rdebugAln("******************** Setup() Begin ********************");
+#endif
+
+  //
+  // Get chip's Unique ID (used for WiFi Access Point name)
+	//
+	char chipID[25];                                                   
+  uint32_t chipid = ESP.getChipId();                                 // Unique'ish chip ID found thru API
+	sprintf(chipID, "ESP-%08X", chipid);
+#ifdef SERIAL_DEBUG
   rdebugAln("Chip ID: %s", chipID);
 #endif
 
