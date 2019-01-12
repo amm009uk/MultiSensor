@@ -82,7 +82,7 @@ These can be reconfigured within MultiSensor\src\User.h.
 
 -------------------------------------------------------------------------------------------------------------
 ## OTA Firmware Updates
-Once device is connected to your WiFi, find its IP and connect to it through using a Browser. User/Password are stored in Multiensor/src/User.h and you can always modify and flash new firmware to change it. Follow on screen firmware update instructions to flash new firmware.
+Once device is connected to your WiFi, find its IP and connect to it through using a Browser. User/Password are stored in MultiSensor/src/User.h and you can always modify and flash new firmware to change it. Follow on screen firmware update instructions to flash new firmware.
 
 -------------------------------------------------------------------------------------------------------------
 ## Credits
