@@ -1,3 +1,4 @@
+
 char* loadConfig() {                                                 // Load JSON conig file from SPIFFS
 
 #ifdef SERIAL_DEBUG

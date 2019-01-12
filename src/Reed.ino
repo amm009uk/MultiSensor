@@ -1,3 +1,4 @@
+
 #ifdef REED_SENSOR1
 void checkReedState(unsigned int PIN, char* topic, String& last_reed_state, String& reed_state) {
 

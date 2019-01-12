@@ -1,3 +1,4 @@
+
 #include <FS.h>                                                      // SPIFFS support
 #include <ESP8266WiFi.h>                                             // ESP8266 Core WiFi Library
 #include <ESP8266WebServer.h>                                        // Local WebServer used to serve the configuration portal
@@ -11,6 +12,9 @@
 #include <Functions.h>                                               // Our functions
 #include <RemoteDebug.h>                                             // Remote debug over telnet   
 #include <User.h>                                                    // Custom settings
+
+//void WiFiStatus();
+//void reboot();
 
 /*----------------------------------------- Global variables -----------------------------------------*/
 
@@ -90,8 +94,9 @@ String last_reed_state4 = "";
 
 long now;                                                            // Hold current time
 
-/* ------------------------------------------ Start of code ------------------------------------------*/
-
+//
+//----------------------------------------- Start of code -----------------------------------------
+//
 void setup() {
 
 #ifdef SERIAL_DEBUG
@@ -262,11 +267,9 @@ void loop() {
     delay(100);
   }
 
-	//
-	// Give time to Web Server
-	//
-  httpServer.handleClient();
-
+  //
+  // Handle the sensors
+  //
   if (MQTTclient.connected()) {                                      // Check sensors as long as we have a full connection (WiFi + MQTT)
 
 #ifdef TEMP_SENSOR
@@ -296,6 +299,11 @@ void loop() {
   }
 
 	//
+	// Give time to Web Server
+	//
+  httpServer.handleClient();
+
+	//
 	// Handle reboot
 	//
 	if (rebootAt != 0) {
@@ -318,6 +326,9 @@ void loop() {
 	  }
 	}
 
+	//
+	// Debug output to serial or telnet
+	//
 #ifdef SERIAL_DEBUG
 	Debug.handle();                                                    // Telnet debug window
 #endif

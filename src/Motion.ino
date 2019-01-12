@@ -1,3 +1,4 @@
+
 #ifdef MOTION_SENSOR
 void checkMotionState(unsigned int PIN, char* topic, String& last_motion_state, String& motion_state) {
 
