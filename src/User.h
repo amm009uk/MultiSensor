@@ -27,4 +27,4 @@
 #define WWW_PASSWD            "esp8266ex"                            // Password for web page
 #define CONFIGFILE            "/config.json"                         // Configurtion file holding various values
 #define IP_REQUEST            "IP/Request"                           // MQTT IP Request Message
-#define IP_REPLY              "IP/Reply/"                             // MQTT IP Reply Message
+#define IP_REPLY              "IP/Reply/"                            // MQTT IP Reply Message

@@ -28,24 +28,24 @@ Temperature is actually "heat index" and is calculated by taking temperature and
 
 -------------------------------------------------------------------------------------------------------------
 ## Setup device
-1. Flash SPIFFs to upload the configuration file - MultiSensor/data/config.json. You may modify the contents prior to upload but not necessary.
+1. Flash SPIFFs to upload the configuration file - MultiSensor/data/config.json files. You may modify the contents prior to upload but not necessary
 
-2. Flash firmware.
+2. Flash firmware
 
-3. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters. Once saved, device will reboot and connect to your WiFi.  
-   See section **Finding device IP Addres**
+3. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters. Once saved, device will reboot and connect to your WiFi  
+   See section **Finding device IP Address**
 
-4. Once device is connected to WiFi, connect to it using browser. 
+4. Once device is connected to WiFi, connect to it using browser
 
-5. Configure device parameters on web page and save.  
-   Once saved, device will reboot and reconnect to your WiFi.
+5. Configure device parameters on web page and save  
+   Once saved, device will reboot and reconnect to your WiFi
 
 6. All sensors will send their own MQTT message as appropriate.
 
-7. Test all sensors and once ok, turn off debugging and upload new compiled firmware - see section **Debug - Serial/Telnet output**.
+7. Test all sensors and once ok, turn off debugging and upload new compiled firmware  
+   See section **Debug - Serial/Telnet output**
 
 - Above steps above should be done over USB-->Serial interface until device is fully functioning.
-
 - Future firmware updates can be performed over the air no need for USB-->Serial interface.
 
 -------------------------------------------------------------------------------------------------------------
