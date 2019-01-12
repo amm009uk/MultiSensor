@@ -5,15 +5,6 @@ ESP8266 All-in-One for controlling several sensors :: (1) DHT, (1) Motion and (4
 ### This project assumes you know what an esp8266 device is and how to upload code to it
 
 -------------------------------------------------------------------------------------------------------------
-## Version
-1.0 Initial version  
-1.1 Testing completed  
-1.2 Updated README  
-1.3 Added IP lookup  
-1.4 Fixed PIN mappings  (motion was hooked up to D4/builtin LED)  
-1.5 Added over the air serial output with Telnet (RemoteDebug library)  
-
--------------------------------------------------------------------------------------------------------------
 ## Features
 Firmware is designed to control up to 6 sensors:  
 	- One motion  
@@ -25,6 +16,15 @@ You don't need all the sensors. Each sensor may be enabled/disabled through Mult
 Each sensor sends its own MQTT message status - so you must have a Mosquitto Broker running
 
 Temperature is actually "heat index" and is calculated by taking temperature and humidity in account
+
+-------------------------------------------------------------------------------------------------------------
+## Version
+1.0 Initial version  
+1.1 Testing completed  
+1.2 Updated README  
+1.3 Added IP lookup  
+1.4 Fixed PIN mappings  (motion was hooked up to D4/builtin LED)  
+1.5 Added over the air serial output with Telnet (RemoteDebug library)  
 
 -------------------------------------------------------------------------------------------------------------
 ## Setup device
@@ -78,11 +78,11 @@ Sensors can be hooked up as follows:
 - D7 Pin for door/window sensor 3
 - D8 Pin for door/window sensor 4
 
-These can be reconfiured within MultiSensor\src\User.h.
+These can be reconfigured within MultiSensor\src\User.h.
 
 -------------------------------------------------------------------------------------------------------------
 ## OTA Firmware Updates
-Once device is connected to your WiFi, find its IP and connect to it. User/Password are stored in Multiensor/src/User.h so you can always modify and flash new firmware to change it.
+Once device is connected to your WiFi, find its IP and connect to it through using a Browser. User/Password are stored in Multiensor/src/User.h and you can always modify and flash new firmware to change it. Follow on screen firmware update instructions to flash new firmware.
 
 -------------------------------------------------------------------------------------------------------------
 - I am simply reusing other peoples amazing work for instance the following libraries:
