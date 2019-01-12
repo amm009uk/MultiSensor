@@ -87,11 +87,11 @@ Once device is connected to your WiFi, find its IP and connect to it through usi
 -------------------------------------------------------------------------------------------------------------
 ## Credits
 I am simply reusing other peoples amazing work for instance the following libraries:  
-	- [PubSubClient](https://github.com/knolleary/pubsubclient)
-	- [WifiManager](https://github.com/tzapu/WiFiManager)
-	- [RemoteDebug](https://github.com/JoaoLopesF/RemoteDebug)
-	- [ArduinoJson](https://github.com/bblanchon/ArduinoJson)
-	- [Adafruit Unified Sensor](https://github.com/adafruit/Adafruit_Sensor)
-	- [DHT sensor library](https://github.com/adafruit/DHT-sensor-library)
-
+	- [PubSubClient](https://github.com/knolleary/pubsubclient)  
+	- [WifiManager](https://github.com/tzapu/WiFiManager)  
+	- [RemoteDebug](https://github.com/JoaoLopesF/RemoteDebug)  
+	- [ArduinoJson](https://github.com/bblanchon/ArduinoJson)  
+	- [Adafruit Unified Sensor](https://github.com/adafruit/Adafruit_Sensor)  
+	- [DHT sensor library](https://github.com/adafruit/DHT-sensor-library)  
+  
 - My development environment is Atom with its builtin PlatformIO toolset. Its a fantastic build and debug environment.
