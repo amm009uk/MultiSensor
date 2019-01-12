@@ -86,7 +86,7 @@ Once device is connected to your WiFi, find its IP and connect to it through usi
 
 -------------------------------------------------------------------------------------------------------------
 ## Credits
-	- I am simply reusing other peoples amazing work for instance the following libraries:
+I am simply reusing other peoples amazing work for instance the following libraries:
 	- [PubSubClient](https://github.com/knolleary/pubsubclient)
 	- [WifiManager](https://github.com/tzapu/WiFiManager)
 	- [RemoteDebug](https://github.com/JoaoLopesF/RemoteDebug)
