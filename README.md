@@ -28,7 +28,7 @@ Temperature is actually "heat index" and is calculated by taking temperature and
 
 -------------------------------------------------------------------------------------------------------------
 ## Setup device
-1. Flash SPIFFs to upload the configuration file - MultiSensor/data/config.json files. You may modify the contents prior to upload but not necessary
+1. Flash SPIFFs to upload the configuration files - MultiSensor/data/config.json. You may modify the contents prior to upload but not necessary
 
 2. Flash firmware
 
