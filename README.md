@@ -93,5 +93,7 @@ I am simply reusing other peoples amazing work for instance the following librar
 	- [ArduinoJson](https://github.com/bblanchon/ArduinoJson)  
 	- [Adafruit Unified Sensor](https://github.com/adafruit/Adafruit_Sensor)  
 	- [DHT sensor library](https://github.com/adafruit/DHT-sensor-library)  
-  
-- My development environment is Atom with its builtin PlatformIO toolset. Its a fantastic build and debug environment.
+
+AND OF COURSE the many examples on github
+
+My development environment is Atom with its builtin PlatformIO toolset. Its a fantastic build and debug environment.
