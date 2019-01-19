@@ -54,8 +54,7 @@ boolean MQTTconnect() {
 void callback(char* topic, byte* payload, unsigned int length) {
 
 #ifdef SERIAL_DEBUG
-  debugln("In MQTT Callback()");
-  debug("..Message arrived ["); debug(topic); debugln("] ");
+  rdebugAln("In MQTT Callback() message arrived [%s]", topic);
 #endif
 
 #ifdef SERIAL_DEBUG
