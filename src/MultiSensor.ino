@@ -1,4 +1,4 @@
-
+][l
 #include <FS.h>                                                      // SPIFFS support
 #include <ESP8266WiFi.h>                                             // ESP8266 Core WiFi Library
 #include <ESP8266WebServer.h>                                        // Local WebServer used to serve the configuration portal
@@ -118,7 +118,7 @@ void setup() {
 	//
 	char chipID[25];                                                   
   uint32_t chipid = ESP.getChipId();                                 // Unique'ish chip ID found thru API
-	sprintf(chipID, "ESP-%08X", chipid);
+	sprintf(chipID, "ESP82XX-%08X", chipid);
 #ifdef SERIAL_DEBUG
   rdebugAln("Chip ID: %s", chipID);
 #endif

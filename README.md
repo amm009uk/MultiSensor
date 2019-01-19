@@ -11,11 +11,11 @@ Firmware is designed to control up to 6 sensors:
 	- One temperature  
 	- Up to four reed switches (door/window type)  
 
-You don't need all the sensors. Each sensor may be enabled/disabled through MultiSensor\src\User.h
+Each sensor may be enabled/disabled through MultiSensor\src\User.h
 
-Each sensor sends its own MQTT message status - so you must have a Mosquitto Broker running
+Each sensor sends its own MQTT status message - so you must have a Mosquitto Broker running
 
-Temperature is actually "heat index" and is calculated by taking temperature and humidity in account
+Temperature is actually "heat index" and is calculated by taking temperature and humidity into account
 
 -------------------------------------------------------------------------------------------------------------
 ## Version
@@ -27,33 +27,32 @@ Temperature is actually "heat index" and is calculated by taking temperature and
 1.5 Added over the air serial output with Telnet (RemoteDebug library)  
 
 -------------------------------------------------------------------------------------------------------------
-## Setup device
+## Device Setup
 1. Flash SPIFFs to upload the configuration files - MultiSensor/data/config.json. You may modify the contents prior to upload but not necessary
 
 2. Flash firmware
 
-3. Device will initially come up with its own *Access Point* called esp8266-xxxxxxx. Connect to this and configure WiFi parameters. Once saved, device will reboot and connect to your WiFi  
+3. Device will initially come up with its own *Access Point* called esp82XX-xxxxxxx. Connect to this and configure WiFi parameters. Once saved, device will reboot and connect to your WiFi  
    See section **Finding device IP Address**
 
-4. Once device is connected to WiFi, connect to it using browser
+4. Once device is connected to WiFi, connect to it using a Browser. User/Password are stored in MultiSensor/src/User.h
 
-5. Configure device parameters on web page and save  
-   Once saved, device will reboot and reconnect to your WiFi
+5. Configure device parameters on web page and save settings. Once saved, device will reboot and reconnect to your WiFi and MQTT Broker
 
-6. All sensors will send their own MQTT message as appropriate.
+6. All sensors will now send their own MQTT message as appropriate
+
+- Above steps should be done over USB-->Serial interface until device is fully functioning  
+- Future firmware updates can be performed over the air with no need for USB-->Serial interface
 
 7. Test all sensors and once ok, turn off debugging and upload new compiled firmware  
    See section **Debug - Serial/Telnet output**
-
-- Above steps above should be done over USB-->Serial interface until device is fully functioning.
-- Future firmware updates can be performed over the air no need for USB-->Serial interface.
 
 -------------------------------------------------------------------------------------------------------------
 ## Finding device IP Address
 	To get the device IP address you have the following options:
 	1. Look at the Serial output where it will show on startup (assuming you have debug output turned on)
-	2. Look in your router
-	3. Try an mDNS browser app but this often takes time to get the ESP showing up
+	2. Look in your router to see WiFi clients
+	3. Try an mDNS browser app but this often takes time to get the device showing up
 
 	4. If already connected to WiFi and MQTT Broker, you can send a blank MQTT message as defined in user.h at "IP_REQUEST".  
      Each device will respond with a MQTT message such as defined with "IP/REPLY/<deviceID>" with the IP address in the payload.
@@ -61,10 +60,16 @@ Temperature is actually "heat index" and is calculated by taking temperature and
 -------------------------------------------------------------------------------------------------------------
 ## Debug - Serial/Telnet output
 	You have two options after turning on SERIAL_DEBUG within MultiSensor\src\User.h:
-		- Serial USB if connected
+		- Serial output over USB if connected
 		- Telnet if connected
 
 **Do not leave SERIAL_DEBUG enabled for normal use**
+
+-------------------------------------------------------------------------------------------------------------
+## OTA Firmware Updates
+Once device is connected to your WiFi, find its IP and connect to it through using a Browser  
+User/Password are stored in MultiSensor/src/User.h and you can always modify and flash new firmware to change it  
+Follow on screen firmware update instructions to flash new firmware
 
 -------------------------------------------------------------------------------------------------------------
 ## Pin Connections 
@@ -79,12 +84,6 @@ Sensors can be hooked up as follows:
 - D8 Pin for door/window sensor 4
 
 These can be reconfigured within MultiSensor\src\User.h.
-
--------------------------------------------------------------------------------------------------------------
-## OTA Firmware Updates
-Once device is connected to your WiFi, find its IP and connect to it through using a Browser  
-User/Password are stored in MultiSensor/src/User.h and you can always modify and flash new firmware to change it  
-Follow on screen firmware update instructions to flash new firmware
 
 -------------------------------------------------------------------------------------------------------------
 ## Credits
