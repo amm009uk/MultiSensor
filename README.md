@@ -1,6 +1,4 @@
-ESP8266 All-in-One for controlling several sensors :: (1) DHT, (1) Motion and (4) Reeds
-
-# MultiSensor
+# ESP8266 All-in-One for controlling several sensors :: (1) DHT, (1) Motion and (4) Reeds
 
 ### This project assumes you know what an esp8266 device is and how to upload code to it
 
@@ -54,7 +52,7 @@ Temperature is actually "heat index" and is calculated by taking temperature and
 	2. Look in your router to see WiFi clients
 	3. Try an mDNS browser app but this often takes time to get the device showing up
 
-	4. If already connected to WiFi and MQTT Broker, you can send a blank MQTT message as defined in user.h at "IP_REQUEST".  
+	4. If already connected to WiFi and MQTT Broker, you can send a blank MQTT message as defined in user.h at "IP_REQUEST"  
      Each device will respond with a MQTT message such as defined with "IP/REPLY/<deviceID>" with the IP address in the payload.
 
 -------------------------------------------------------------------------------------------------------------
