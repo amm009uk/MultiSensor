@@ -56,11 +56,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
 #ifdef SERIAL_DEBUG
   rdebugAln("In MQTT Callback() message arrived [%s]", topic);
 #endif
-
-#ifdef SERIAL_DEBUG
-	rdebugAln("MQTT Callback() initiated");
-  rdebugAln("Message arrived: %s", topic);
-#endif
 	
   if (strcmp(topic, IP_REQUEST)==0) {                                // Check if we want this message
 
@@ -74,6 +69,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 #endif
 
 		MQTTclient.publish(replyMessage.c_str(), Msg.c_str());		       // Publish message to Broker
+		return;
 
   } else {                                                           // Not interested in this message
   		rdebugAln("Message ignored");
