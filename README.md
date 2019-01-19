@@ -54,7 +54,7 @@ Temperature is actually "heat index" and is calculated by taking temperature and
 	3. Try an mDNS browser app but this often takes time to get the device showing up
 
 	4. If already connected to WiFi and MQTT Broker, you can send a blank MQTT message as defined in user.h at "IP_REQUEST"  
-     Each device will respond with a MQTT message such as defined with "IP/REPLY/<deviceID>" with the IP address in the payload.
+     Each device will respond with a MQTT message such as defined with "IP/REPLY/<deviceID>" with the IP address in the payload
 
 -------------------------------------------------------------------------------------------------------------
 ## Debug - Serial/Telnet output
@@ -72,7 +72,7 @@ Follow on screen firmware update instructions to flash new firmware
 
 -------------------------------------------------------------------------------------------------------------
 ## Pin Connections 
-Project was developed on a **Wemos D1 mini pro** board. I like this boards form-factor and its ease of use. 
+Project was developed on a **Wemos D1 mini pro** board. I like this boards form-factor and its ease of use  
 
 Sensors can be hooked up as follows:
 - D1 Pin for Temperature sensor (DHT22)
@@ -82,7 +82,7 @@ Sensors can be hooked up as follows:
 - D7 Pin for door/window sensor 3
 - D8 Pin for door/window sensor 4
 
-These can be reconfigured within MultiSensor\src\User.h.
+These can be reconfigured within MultiSensor\src\User.h
 
 -------------------------------------------------------------------------------------------------------------
 ## Credits
@@ -96,4 +96,4 @@ I am simply reusing other peoples amazing work for instance the following librar
 
 AND OF COURSE the many examples on github
 
-My development environment is Atom with its builtin PlatformIO toolset. Its a fantastic build and debug environment.
+My development environment is Atom with its builtin PlatformIO toolset. Its a fantastic build and debug environment
