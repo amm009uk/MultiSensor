@@ -1,5 +1,5 @@
 # ESP8266 All-in-One for controlling several sensors ::  
-	 (1) DHT, (1) Motion and (4) Reeds
+	(1) DHT, (1) Motion and (4) Reeds
 
 ### This project assumes you know what an esp8266 device is and how to upload code to it
 
